@@ -213,7 +213,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content container */}
-      <SmoothCursor />
+      {/* <SmoothCursor /> */}
       <div className="container mx-auto px-4 z-10 text-center relative">
         <div className="max-w-3xl mx-auto">
           {/* Main headline with VideoText */}
