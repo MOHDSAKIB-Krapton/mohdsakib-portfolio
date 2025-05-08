@@ -29,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ScrollProgress />
+        <div className="z-50">
+          <ScrollProgress />
+        </div>
         <Layout>{children}</Layout>
       </body>
     </html>

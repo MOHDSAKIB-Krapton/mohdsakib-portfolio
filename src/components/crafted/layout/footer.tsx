@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { MorphingText } from "@/components/magicui/morphing-text";
 import { TerminalHistoryDemo } from "../terminal-history";
+import Container from "@/components/common/container/page";
 
 export default function Footer() {
   const [terminalVisible, setTerminalVisible] = useState(false);
@@ -48,7 +49,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-gray-400 border-t border-gray-800">
-      <div className="container mx-auto px-4 py-12">
+      {/* <div className="container mx-auto px-4 py-12"> */}
+      <Container>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left column */}
           <div>
@@ -181,7 +183,8 @@ export default function Footer() {
             </span>
           </p>
         </div>
-      </div>
+      </Container>
+      {/* </div> */}
     </footer>
   );
 }

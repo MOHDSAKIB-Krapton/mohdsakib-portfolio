@@ -176,7 +176,7 @@ export default function ContactFSMSection() {
 
   return (
     <section className="w-full py-16 bg-gray-950 text-white relative">
-      <SmoothCursor />
+      {/* <SmoothCursor /> */}
 
       <div className="max-w-6xl mx-auto px-4" id="contact-fsm-section">
         <div className="mb-12 text-center">

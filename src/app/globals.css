@@ -87,6 +87,10 @@ body {
   background-color: rgb(30, 29, 29);
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

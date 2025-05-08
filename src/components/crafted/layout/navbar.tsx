@@ -38,15 +38,15 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 m-2 rounded-full  ${
         isScrolled
           ? "bg-black/80 backdrop-blur-md border-b border-gray-800"
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="h-16 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 ">
+        <div className="h-16 flex items-center justify-between  ">
+          <div className="flex items-center space-x-2 ">
             <AnimatedShinyText className="font-mono text-lg font-bold">
               DevPortfolio
             </AnimatedShinyText>
@@ -69,7 +69,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div>
+          <div className="">
             <InteractiveHoverButton>
               <Link href="#contact" className="px-4 py-2 text-sm rounded-md">
                 Hire Me
@@ -78,7 +78,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button - we'd implement a proper mobile menu later */}
-          <button className="md:hidden p-2">
+          <button className="hidden p-2">
             <span className="sr-only">Open menu</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
