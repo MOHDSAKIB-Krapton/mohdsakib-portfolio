@@ -85,6 +85,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(30, 29, 29);
+  scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
