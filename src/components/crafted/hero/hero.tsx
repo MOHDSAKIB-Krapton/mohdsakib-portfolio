@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { VideoText } from "@/components/magicui/video-text";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { motion } from "framer-motion";
 import { Code, Cpu, Database, Network } from "lucide-react";
-import { Marker } from "cobe";
 import Container from "@/components/common/container/page";
 import { GlobeDemo } from "../BFSGlobe";
+import { NodeCounter } from "../node-counter";
 
 const iconAnimations = [
   {
@@ -52,23 +51,19 @@ const iconAnimations = [
 ];
 
 export default function HeroSection() {
-  const [particleCount, setParticleCount] = useState(0);
-
   return (
     <section className="relative">
       <div className="absolute top-1/4 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"></div>
 
       <Container>
-        <div className="min-h-screen flex flex-col md:flex-row mt-12 relative flex-1">
+        <div className="flex flex-col lg:flex-row mt-12 relative flex-1">
           <div className="absolute top-8 right-8 z-20 bg-black/40 backdrop-blur-md rounded-xl p-3 border border-gray-800">
             <div className="flex items-center gap-2">
               <Network className="text-cyan-400 h-5 w-5" />
               <div className="text-xs font-mono">
                 <span className="text-gray-400">NODES TRAVERSED: </span>
-                <span className="text-cyan-400">
-                  {particleCount.toString().padStart(3, "0")}
-                </span>
+                <NodeCounter />
               </div>
             </div>
           </div>

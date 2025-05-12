@@ -6,7 +6,7 @@ import {
   Image,
   Globe,
 } from "lucide-react";
-import { Project } from "./data.types";
+import { Project, Skill } from "./data.types";
 
 export const navLinks = [
   { href: "#about", label: "About" },
@@ -27,6 +27,55 @@ export const algoConcept = [
   "GraphTraversal",
   "BreadthFirstSearch",
   "DepthFirstSearch",
+];
+
+export const aboutParagraphs: string[] = [
+  "I'm a passionate developer with expertise in full-stack web development, focusing on React, Next.js, and modern JavaScript frameworks. My approach combines clean code with intuitive user experiences.",
+  "With a strong foundation in computer science principles, I build scalable and maintainable applications that solve real-world problems while adhering to best practices and design patterns.",
+  "Beyond development, I'm dedicated to sharing knowledge and contributing to the community through open-source projects, technical articles, mentoring aspiring developers and post the solutions of underrated problems that no one talks about.",
+];
+
+export const skills: Skill[] = [
+  {
+    name: "Algorithms & Data Structures",
+    proficiency: 90,
+    color: "from-blue-500 to-indigo-600",
+    icon: "🔍",
+    description:
+      "Expertise in implementing efficient algorithms and selecting optimal data structures for complex problem-solving scenarios.",
+  },
+  {
+    name: "System Architecture",
+    proficiency: 85,
+    color: "from-purple-500 to-pink-600",
+    icon: "🏗️",
+    description:
+      "Designing scalable, maintainable system architectures with focus on microservices, serverless, and cloud-native approaches.",
+  },
+  {
+    name: "Database Design",
+    proficiency: 88,
+    color: "from-green-500 to-emerald-600",
+    icon: "🗃️",
+    description:
+      "Creating normalized, performance-optimized database schemas across SQL and NoSQL systems with efficient indexing strategies.",
+  },
+  {
+    name: "API Development",
+    proficiency: 92,
+    color: "from-orange-500 to-amber-600",
+    icon: "🔌",
+    description:
+      "Building RESTful and GraphQL APIs with robust authentication, validation, and documentation using modern best practices.",
+  },
+  {
+    name: "Web Performance Optimization",
+    proficiency: 87,
+    color: "from-red-500 to-rose-600",
+    icon: "⚡",
+    description:
+      "Implementing advanced techniques for minimizing load times, reducing bundle sizes, and optimizing rendering performance.",
+  },
 ];
 
 export const terminalHistory = [

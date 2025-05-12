@@ -15,7 +15,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      let threshold = 100;
+      let threshold = 70;
 
       if (scrollY > threshold) {
         setIsScrolled(true); // Go right in the BST
@@ -41,14 +41,14 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 m-2 rounded-full  ${
         isScrolled
           ? "bg-black/80 backdrop-blur-md border-b border-gray-800"
-          : "bg-transparent"
+          : "bg-transparent border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 ">
         <div className="h-16 flex items-center justify-between  ">
           <div className="flex items-center space-x-2 ">
             <AnimatedShinyText className="font-mono text-lg font-bold">
-              DevPortfolio
+              MohdSakib
             </AnimatedShinyText>
             <div className="hidden md:block pl-2 ml-2 border-l border-gray-700 w-[150px] truncate">
               <TypingAnimation

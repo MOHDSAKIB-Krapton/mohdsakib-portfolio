@@ -395,10 +395,8 @@ export function GlobeDemo() {
 
   return (
     <div className="relative w-full flex-1 h-full min-h-96">
-      <div className="relative h-full flex-1 ">
-        <div className="absolute w-full inset-0 top-10 h-72 md:h-full z-10">
-          <World data={sampleArcs} globeConfig={globeConfig} />
-        </div>
+      <div className="absolute w-full inset-0 top-0 h-72 md:h-full -z-10">
+        <World data={sampleArcs} globeConfig={globeConfig} />
       </div>
     </div>
   );

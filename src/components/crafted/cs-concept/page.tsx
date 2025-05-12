@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/common/container/page";
 import { CodeComparison } from "@/components/magicui/code-comparison";
 import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
@@ -142,7 +143,7 @@ export default function CSConceptsSection() {
 
   const tabContent = {
     architecture: (
-      <div className="bg-gray-900 p-6 rounded-lg">
+      <div className="backdrop-blur-sm bg-black/20 p-6 rounded-lg">
         <h3 className="text-xl font-semibold text-white mb-4">
           Next.js App Directory Structure
         </h3>
@@ -155,7 +156,7 @@ export default function CSConceptsSection() {
       </div>
     ),
     optimization: (
-      <div className="bg-gray-900 p-6 rounded-lg">
+      <div className="backdrop-blur-sm bg-black/20 p-6 rounded-lg">
         <h3 className="text-xl font-semibold text-white mb-4">
           Algorithm Optimization
         </h3>
@@ -176,7 +177,7 @@ export default function CSConceptsSection() {
       </div>
     ),
     security: (
-      <div className="bg-gray-900 p-6 rounded-lg">
+      <div className="backdrop-blur-sm bg-black/20 p-6 rounded-lg">
         <h3 className="text-xl font-semibold text-white mb-4">
           Cryptography & Hashing
         </h3>
@@ -217,38 +218,40 @@ export default function CSConceptsSection() {
   };
 
   return (
-    <div className="relative w-full py-20 px-4 md:px-8 lg:px-16 bg-black">
-      <InteractiveGridPattern
-        className="absolute inset-0 opacity-20"
-        size={30}
-        offset={10}
-        color="#3b82f6"
-      />
+    <Container>
+      <div className="relative w-full ">
+        <InteractiveGridPattern
+          className="absolute inset-0 opacity-20"
+          // size={30}
+          offset={10}
+          color="#3b82f6"
+        />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <h2 className="text-4xl font-bold text-white mb-4">CS Concepts</h2>
-        <p className="text-gray-400 text-lg mb-8">
-          Interactive demonstrations of key computer science principles
-        </p>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-4xl font-bold text-white mb-4">CS Concepts</h2>
+          <p className="text-gray-400 text-lg mb-8">
+            Interactive demonstrations of key computer science principles
+          </p>
 
-        <div className="flex gap-2 mb-8">
-          {["architecture", "optimization", "security"].map((tab) => (
-            <InteractiveHoverButton
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`${
-                activeTab === tab
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-800 text-gray-300"
-              }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </InteractiveHoverButton>
-          ))}
+          <div className="flex gap-2 mb-8">
+            {["architecture", "optimization", "security"].map((tab) => (
+              <InteractiveHoverButton
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`${
+                  activeTab === tab
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-800 text-gray-300"
+                }`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </InteractiveHoverButton>
+            ))}
+          </div>
+
+          {tabContent[activeTab]}
         </div>
-
-        {tabContent[activeTab]}
       </div>
-    </div>
+    </Container>
   );
 }

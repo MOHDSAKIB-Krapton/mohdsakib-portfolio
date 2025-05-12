@@ -15,3 +15,11 @@ export interface Project {
     color?: string; // optional color class like "text-green-500"
   }[];
 }
+
+export type Skill = {
+  name: string;
+  proficiency: number;
+  color: string;
+  icon: string;
+  description: string;
+};
