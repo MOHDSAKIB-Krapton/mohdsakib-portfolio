@@ -52,7 +52,7 @@ const iconAnimations = [
 
 export default function HeroSection() {
   return (
-    <section className="relative">
+    <section className="relative" id="hero">
       <div className="absolute top-1/4 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"></div>
 

@@ -1,153 +1,3 @@
-// "use client";
-
-// import { useState } from "react";
-// import {
-//   ArrowRight,
-//   Cloud,
-//   Code,
-//   File,
-//   FileText,
-//   MessageCircle,
-//   MessageCircleMore,
-//   Sparkles,
-//   User,
-// } from "lucide-react";
-// import { DynamicBeamLayout } from "../animated-beam-network";
-// import { BlurFade } from "@/components/magicui/blur-fade";
-// import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
-// import { projects } from "@/constants/data";
-// import {
-//   AnimatedSpan,
-//   Terminal,
-//   TypingAnimation,
-// } from "@/components/magicui/terminal";
-// import { Project } from "@/constants/data.types";
-// import Container from "@/components/common/container/page";
-
-// export default function ProjectsSection() {
-//   const [activeProject, setActiveProject] = useState<Project | null>(null);
-//   const [terminalOpen, setTerminalOpen] = useState(false);
-//   const [terminalContent, setTerminalContent] = useState("");
-
-//   // CS Concept: State Machines
-//   // This section uses the concept of finite state machines where
-//   // the UI transforms between various states based on user input
-
-//   // CS Concept: Event Handling
-//   const handleProjectClick = (project: any) => {
-//     setActiveProject(project);
-//     setTerminalContent(project.terminalCommand);
-//     setTerminalOpen(true);
-//   };
-
-//   const handleTerminalClose = () => {
-//     setTerminalOpen(false);
-//   };
-
-//   const nodes = [
-//     { id: "googleDrive", icon: <Cloud />, column: 0 },
-//     { id: "docs", icon: <FileText />, column: 0 },
-//     { id: "whatsapp", icon: <MessageCircleMore />, column: 0 },
-//     { id: "messenger", icon: <MessageCircle />, column: 0 },
-//     { id: "notion", icon: <File />, column: 0 },
-//     { id: "openai", icon: <Sparkles />, column: 1 },
-//     { id: "user", icon: <User />, column: 2 },
-//   ];
-
-//   const connections = [
-//     { from: "drive", to: "openai" },
-//     { from: "docs", to: "openai" },
-//     { from: "whatsapp", to: "openai" },
-//     { from: "messenger", to: "openai" },
-//     { from: "notion", to: "openai" },
-//     { from: "openai", to: "user" },
-//   ];
-
-//   return (
-//     <Container>
-//       <div className="relative w-full">
-//         <DynamicBeamLayout nodes={nodes} connections={connections} />
-
-//         <div className="max-w-7xl mx-auto mb-16">
-//           <h2 className="text-4xl font-bold text-white mb-4">Projects</h2>
-//           <p className="text-gray-400 text-lg mb-8">
-//             Explore my work through the lens of computational state transitions
-//           </p>
-
-//           <BlurFade>
-//             {/* <BentoGrid className="grid-cols-1 md:grid-cols-3 gap-6">
-//             {projects.map((project, i) => (
-//               <BentoCard
-//                 key={i}
-//                 title={project.title}
-//                 description={project.description}
-//                 // Icon={project.icon}
-
-//                 className={`cursor-pointer transition-all duration-300 ${
-//                   project.className
-//                 } ${activeProject === project ? "ring-2 ring-blue-500" : ""}`}
-//                 onClick={() => handleProjectClick(project)}
-//               >
-//                 <div className="flex items-center justify-between mt-4">
-//                   <div className="flex items-center text-sm">
-//                     <Code className="w-4 h-4 mr-1 text-gray-400" />
-//                     <span className="text-gray-400">View CS Concept</span>
-//                   </div>
-//                   <ArrowRight className="w-4 h-4 text-gray-400" />
-//                 </div>
-//               </BentoCard>
-//             ))}
-//           </BentoGrid> */}
-//             <BentoGrid className="grid-cols-1 md:grid-cols-3 gap-6">
-//               {projects.map((project, i) => (
-//                 <BentoCard
-//                   key={i}
-//                   name={project.name}
-//                   description={project.description}
-//                   Icon={project.Icon}
-//                   background={project.background}
-//                   href={project.href}
-//                   cta={project.cta}
-//                   className={`cursor-pointer transition-all duration-300 ${
-//                     activeProject === project ? "ring-2 ring-blue-500" : ""
-//                   }`}
-//                   onClick={() => handleProjectClick(project)}
-//                 />
-//               ))}
-//             </BentoGrid>
-//           </BlurFade>
-
-//           {terminalOpen && activeProject && (
-//             <div className="mt-8">
-//               <Terminal className="h-fit">
-//                 {activeProject.terminalOutput.map((line: any, idx: number) =>
-//                   line.type === "typing" ? (
-//                     <TypingAnimation
-//                       key={idx}
-//                       delay={line.delay || idx * 1000}
-//                       className={line.color || "text-muted-foreground"}
-//                     >
-//                       {line.content}
-//                     </TypingAnimation>
-//                   ) : (
-//                     <AnimatedSpan
-//                       key={idx}
-//                       delay={line.delay || idx * 1000}
-//                       className={line.color || "text-green-500"}
-//                     >
-//                       {line.content}
-//                     </AnimatedSpan>
-//                   )
-//                 )}
-//               </Terminal>
-//             </div>
-//           )}
-//         </div>
-//       </div>
-//     </Container>
-//   );
-// }
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -157,17 +7,14 @@ import {
   Clock,
   Code,
   FileText,
-  RefreshCw,
   Search,
-  Tag,
   ThumbsUp,
-  Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { BlurFade } from "@/components/magicui/blur-fade";
-import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import Container from "@/components/common/container/page";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 // Blog data fetching service
 const BlogService = {
@@ -231,47 +78,63 @@ const BlogService = {
   },
 };
 
-// Blog Card Component
-const BlogCard = ({ blog, onClick }: { blog: any; onClick: any }) => {
+const BlogCard = ({ blog, onClick }: any) => {
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.2 }}
-      className="cursor-pointer"
+    <div
+      className="relative group w-full bg-black/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-blue-500 transition-all duration-300 cursor-pointer"
       onClick={() => onClick(blog)}
     >
-      <div className="relative overflow-hidden rounded-xl h-48 mb-4">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 z-10" />
-        <img
-          src={blog.imageUrl}
-          alt={blog.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute bottom-4 left-4 z-20">
-          {/* <Badge className="bg-blue-500 hover:bg-blue-600">
-            {blog.category}
-          </Badge> */}
-          <div className="bg-blue-500 hover:bg-blue-600">{blog.category}</div>
+      <div className="flex flex-col h-full">
+        <div className="relative overflow-hidden h-48">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/70 to-gray-900 z-10 transition-opacity duration-300 group-hover:opacity-80 opacity-60" />
+
+          <Image
+            src={blog.imageUrl}
+            alt={blog.title}
+            fill
+            title={blog.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+
+          <div className="absolute top-4 left-4 z-20">
+            <div className="flex items-center gap-2 bg-blue-600 bg-opacity-90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg text-xs font-medium text-white">
+              <Code className="w-4 h-4" />
+              <span>{blog.category}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Content section */}
+        <div className="p-5 flex flex-col flex-grow relative z-20">
+          {/* Title with gradient */}
+          <h3 className="text-xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 line-clamp-2">
+            {blog.title}
+          </h3>
+
+          {/* Summary with special styling */}
+          <p className="text-gray-300 mb-4 line-clamp-3 font-light">
+            {blog.summary}
+          </p>
+
+          {/* Metadata section */}
+          <div className="mt-auto pt-3 border-t border-gray-800 flex items-center justify-between text-sm text-gray-400">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-blue-400" />
+              <span>{blog.date}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-blue-400" />
+              <span>{blog.readTime} min read</span>
+            </div>
+          </div>
+
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-600 to-blue-600/80 text-white p-3 flex items-center justify-center gap-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <span className="font-medium">Read Article</span>
+            <ArrowRight className="w-4 h-4" />
+          </div>
         </div>
       </div>
-
-      <h3 className="text-xl font-bold text-white mb-2 line-clamp-2">
-        {blog.title}
-      </h3>
-
-      <p className="text-gray-400 mb-3 line-clamp-3">{blog.summary}</p>
-
-      <div className="flex items-center justify-between text-sm text-gray-400">
-        <div className="flex items-center gap-2">
-          <Calendar className="w-4 h-4" />
-          <span>{blog.date}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4" />
-          <span>{blog.readTime} min read</span>
-        </div>
-      </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -375,128 +238,10 @@ const BlogDetailView = ({ blog, onClose }: any) => {
   );
 };
 
-// Blog Generation Panel Component
-const BlogGenerationPanel = ({ onBlogGenerated }: any) => {
-  const [topic, setTopic] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [trendingTopics, setTrendingTopics] = useState([]);
-
-  useEffect(() => {
-    const fetchTopics = async () => {
-      const topics = await BlogService.fetchTrendingTopics();
-      setTrendingTopics(topics);
-    };
-
-    fetchTopics();
-  }, []);
-
-  const handleGenerate = async () => {
-    if (!topic.trim()) return;
-
-    setLoading(true);
-    try {
-      // Generate blog content
-      const blogData = await BlogService.generateBlogContent(topic);
-      if (!blogData) throw new Error("Failed to generate blog");
-
-      // Fetch related image
-      const imageData = await BlogService.fetchImage(topic);
-      if (!imageData) throw new Error("Failed to fetch image");
-
-      // Create complete blog object
-      const newBlog = {
-        ...blogData,
-        imageUrl: imageData.url,
-        date: new Date().toLocaleDateString(),
-        readTime: Math.floor(Math.random() * 8) + 3, // 3-10 min read time
-      };
-
-      onBlogGenerated(newBlog);
-    } catch (error) {
-      console.error("Error generating blog:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="bg-gray-900 p-6 rounded-xl mb-8">
-      <div className="flex items-center gap-2 text-white mb-4">
-        <Zap className="w-5 h-5 text-yellow-400" />
-        <h3 className="text-xl font-bold">Generate New Blog Post</h3>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="md:col-span-3">
-          <input
-            placeholder="Enter a topic or keyword"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            className="bg-gray-800 border-gray-700"
-          />
-          {/* <Input
-            placeholder="Enter a topic or keyword"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            className="bg-gray-800 border-gray-700"
-          /> */}
-        </div>
-
-        <div className="md:col-span-1">
-          <select
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            className="bg-gray-800 border border-gray-700 text-white px-3 py-2 rounded"
-          >
-            <option disabled value="">
-              Trending Topics
-            </option>
-            {trendingTopics.map((topic, index) => (
-              <option key={index} value={topic}>
-                {topic}
-              </option>
-            ))}
-          </select>
-
-          {/* <Select onValueChange={(value) => setTopic(value)}>
-            <SelectTrigger className="bg-gray-800 border-gray-700">
-              <SelectValue placeholder="Trending Topics" />
-            </SelectTrigger>
-            <SelectContent className="bg-gray-800 border-gray-700">
-              {trendingTopics.map((topic, index) => (
-                <SelectItem key={index} value={topic}>
-                  {topic}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select> */}
-        </div>
-
-        <div className="md:col-span-1">
-          <Button
-            onClick={handleGenerate}
-            disabled={loading || !topic.trim()}
-            className="w-full bg-blue-600 hover:bg-blue-700"
-          >
-            {loading ? (
-              <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-            ) : (
-              <Zap className="w-4 h-4 mr-2" />
-            )}
-            Generate
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // Main Blog Section Component
 export default function BlogsSection() {
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -558,56 +303,14 @@ export default function BlogsSection() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle search and filtering
-  useEffect(() => {
-    let results = blogs;
-
-    // Filter by search query
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      results = results.filter(
-        (blog: any) =>
-          blog.title.toLowerCase().includes(query) ||
-          blog.summary.toLowerCase().includes(query) ||
-          blog.tags.some((tag: any) => tag.toLowerCase().includes(query))
-      );
-    }
-
-    // Filter by category
-    if (activeCategory !== "All") {
-      results = results.filter((blog: any) => blog.category === activeCategory);
-    }
-
-    setFilteredBlogs(results);
-  }, [searchQuery, activeCategory, blogs]);
-
-  // Get unique categories from blogs
-  const categories = [
-    "All",
-    ...new Set(blogs.map((blog: any) => blog.category)),
-  ];
-
   // Handle blog click
   const handleBlogClick = (blog: any) => {
     setSelectedBlog(blog);
   };
 
-  // Handle blog generation
-  const handleBlogGenerated = (newBlog: any) => {
-    const updatedBlogs = [
-      {
-        ...newBlog,
-        id: blogs.length + 1,
-      },
-      ...blogs,
-    ];
-    setBlogs(updatedBlogs as any);
-    setFilteredBlogs(updatedBlogs as any);
-  };
-
   return (
     <Container>
-      <div className="relative w-full py-16">
+      <div className="relative w-full">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div>
@@ -627,62 +330,8 @@ export default function BlogsSection() {
             </div>
           </div>
 
-          {/* Blog Generation Panel */}
-          <BlogGenerationPanel onBlogGenerated={handleBlogGenerated} />
-
-          {/* Search and Filter Bar */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <div className="relative flex-grow">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-              <input
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-gray-800 border-gray-700"
-              />
-              {/* <Input
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-gray-800 border-gray-700"
-              /> */}
-            </div>
-
-            <div className="flex gap-2 overflow-x-auto pb-2">
-              {categories.map((category, index) => (
-                <Button
-                  key={index}
-                  variant={activeCategory === category ? "default" : "outline"}
-                  className={
-                    activeCategory === category
-                      ? "bg-blue-600 hover:bg-blue-700"
-                      : "border-gray-700 text-gray-400 hover:text-white"
-                  }
-                  onClick={() => setActiveCategory(category)}
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
-          </div>
-
           <BlurFade>
             {loading ? (
-              // <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              //   {[1, 2, 3, 4, 5, 6].map((item) => (
-              //     <div key={item} className="space-y-4">
-              //       <Skeleton className="h-48 w-full rounded-xl" />
-              //       <Skeleton className="h-6 w-3/4" />
-              //       <Skeleton className="h-4 w-full" />
-              //       <Skeleton className="h-4 w-5/6" />
-              //       <div className="flex justify-between">
-              //         <Skeleton className="h-4 w-1/4" />
-              //         <Skeleton className="h-4 w-1/4" />
-              //       </div>
-              //     </div>
-              //   ))}
-              // </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="space-y-4">
                   <div className="h-48 w-full rounded-xl bg-gray-700 animate-pulse"></div>

@@ -3,30 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MorphingText } from "@/components/magicui/morphing-text";
-import { TerminalHistoryDemo } from "../terminal-history";
 import Container from "@/components/common/container/page";
 
 export default function Footer() {
   const [terminalVisible, setTerminalVisible] = useState(false);
   const currentYear = new Date().getFullYear();
-
-  // Simulated terminal commands and outputs
-  const terminalHistory = [
-    { type: "input", text: "ssh portfolio@server" },
-    { type: "output", text: "Connected to portfolio server. Welcome!" },
-    { type: "input", text: "cat about.txt" },
-    {
-      type: "output",
-      text: "I'm a passionate developer who loves computer science concepts and creative coding.",
-    },
-    { type: "input", text: "ls -la projects/" },
-    {
-      type: "output",
-      text: "total 6\ndrwxr-xr-x  2 portfolio users 4096 Apr 10 15:30 .\ndrwxr-xr-x 10 portfolio users 4096 Apr 10 15:30 ..\n-rw-r--r--  1 portfolio users 2048 Apr 10 15:30 ecommerce-platform.md\n-rw-r--r--  1 portfolio users 3072 Apr 10 15:30 ai-assistant.md\n-rw-r--r--  1 portfolio users 1536 Apr 10 15:30 blockchain-explorer.md",
-    },
-    { type: "input", text: "exit" },
-    { type: "output", text: "Disconnected from server. Goodbye!" },
-  ];
 
   // Hash function demonstration (simplified SHA-256 concept)
   // This is a very simplified version just to demonstrate the concept
@@ -139,28 +120,8 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
-          {/* Right column */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">
-              <button
-                onClick={() => setTerminalVisible(!terminalVisible)}
-                className="flex items-center gap-2 hover:text-blue-400 transition-colors"
-              >
-                <span>Terminal</span>
-                <span className="text-xs text-green-500">●</span>
-              </button>
-            </h3>
-
-            {terminalVisible && (
-              <div className="mt-2">
-                <TerminalHistoryDemo />
-              </div>
-            )}
-          </div>
         </div>
 
-        {/* Bottom copyright */}
         <div className="mt-8 pt-8 border-t border-gray-800 text-sm text-center">
           <p>© {currentYear} - Built with Next.js and Magic UI</p>
           <p className="mt-1 text-xs">
@@ -184,7 +145,6 @@ export default function Footer() {
           </p>
         </div>
       </Container>
-      {/* </div> */}
     </footer>
   );
 }

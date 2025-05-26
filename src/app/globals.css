@@ -178,3 +178,22 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* react-complex-tree styling */
+:root {
+  --rct-color-tree-bg: #0f172a;
+  /* Dark background */
+  --rct-color-tree-focus-outline: #38bdf8;
+  /* Cyan outline */
+  --rct-color-focustree-item-selected-bg: #1e293b;
+  /* Selected item background */
+  --rct-color-focustree-item-selected-text: #ffffff;
+  /* Selected item text */
+  --rct-color-focustree-item-focused-border: #38bdf8;
+  /* Focused item border */
+  --rct-color-focustree-item-draggingover-bg: #334155;
+  /* Drag over background */
+  --rct-color-focustree-item-draggingover-color: #ffffff;
+  /* Drag over text */
+}

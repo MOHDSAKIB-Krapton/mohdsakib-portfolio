@@ -13,8 +13,8 @@ const Home = () => {
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
-      {/* <CSConceptsSection /> */}
-      {/* <ContactFSMSection /> */}
+      <CSConceptsSection />
+      <ContactFSMSection />
     </div>
   );
 };
