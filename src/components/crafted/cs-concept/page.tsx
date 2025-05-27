@@ -2,7 +2,6 @@
 
 import Container from "@/components/common/container/page";
 import { CodeComparison } from "@/components/magicui/code-comparison";
-import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { useState } from "react";
 import { FileTree } from "./file-tree/page";
@@ -102,7 +101,7 @@ export default function CSConceptsSection() {
   };
 
   return (
-    <div className="relative w-full min-h-screen ">
+    <div className="relative w-full min-h-screen " id="cs-concepts">
       <InteractiveGrid className="opacity-40" />
       <Container>
         <div className="relative z-10 w-full">

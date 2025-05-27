@@ -68,7 +68,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="mx-auto px-4 z-10 text-center relative flex flex-1 ">
+          <div className="mx-auto z-10 text-center relative flex flex-1 ">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

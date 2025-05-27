@@ -7,6 +7,7 @@ import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { algoConcept, navLinks } from "@/constants/data";
 import { NavLink } from "@/lib/helper/navlink";
+import { Cross } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,16 +62,16 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out m-2 rounded-full max-w-7xl mx-auto ${
+        className={`fixed top-0 left-4 right-4 z-[80] transition-all duration-500 ease-out m-2 rounded-full max-w-7xl mx-auto ${
           isScrolled
-            ? "bg-black/80 backdrop-blur-md border-b border-gray-800"
+            ? "bg-black/20 backdrop-blur-md border-b border-gray-800"
             : "bg-transparent border-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-16 flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <AnimatedShinyText className="font-mono text-lg font-bold">
+              <AnimatedShinyText className="font-mono text-lg font-bold text-white">
                 MohdSakib
               </AnimatedShinyText>
               <div className="hidden md:block pl-2 ml-2 border-l border-gray-700 w-[150px] truncate">
@@ -100,7 +101,6 @@ export default function Navbar() {
               </InteractiveHoverButton>
             </div>
 
-            {/* Mobile menu button with morphing animation */}
             <button
               className={`md:hidden p-3 relative z-[60] transition-all duration-700 ease-out rounded-full ${
                 isMobileMenuOpen ? "bg-white" : "bg-transparent"
@@ -139,7 +139,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu Modal with CodeGrid-style animations */}
       <div
         className={`fixed inset-0 z-50 md:hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           isMobileMenuOpen
@@ -147,47 +146,33 @@ export default function Navbar() {
             : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Animated Background Layers */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Main background with morphing effect */}
-          <div
-            className={`absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 transform transition-all duration-1200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-              isMobileMenuOpen ? "scale-100 rotate-0" : "scale-110 rotate-12"
-            }`}
-          />
+        <div
+          className={`absolute inset-0 transition-all duration-1000 ease-out ${
+            isMobileMenuOpen
+              ? "backdrop-blur-md bg-black/60"
+              : "backdrop-blur-none bg-transparent"
+          }`}
+          style={{
+            transitionDelay: isMobileMenuOpen ? "300ms" : "0ms",
+          }}
+        />
 
-          {/* Animated overlay shapes */}
-          <div
-            className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-500/30 to-transparent rounded-full transform transition-all duration-1500 ease-out ${
-              isMobileMenuOpen
-                ? "translate-x-0 translate-y-0 scale-100"
-                : "translate-x-48 -translate-y-48 scale-0"
-            }`}
-          />
-          <div
-            className={`absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-500/20 to-transparent rounded-full transform transition-all duration-1300 ease-out ${
-              isMobileMenuOpen
-                ? "translate-x-0 translate-y-0 scale-100"
-                : "-translate-x-40 translate-y-40 scale-0"
-            }`}
-          />
-
-          {/* Backdrop blur overlay */}
-          <div
-            className={`absolute inset-0 backdrop-blur-xl bg-black/20 transition-all duration-800 ease-out ${
-              isMobileMenuOpen ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        </div>
-
-        {/* Modal Content Container */}
         <div
           className={`absolute inset-0 flex items-center justify-center p-8 transform transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
             isMobileMenuOpen ? "scale-100 rotate-0" : "scale-95 rotate-3"
           }`}
+          style={{
+            transitionDelay: isMobileMenuOpen ? "200ms" : "0ms",
+          }}
         >
+          <div
+            onClick={toggleMobileMenu}
+            className="absolute top-4 right-4 z-50"
+          >
+            <Cross width={24} height={24} />
+          </div>
+
           <div className="w-full max-w-md">
-            {/* Logo Section with reveal animation */}
             <div
               className={`text-center transform transition-all duration-1000 ease-out ${
                 isMobileMenuOpen
@@ -198,7 +183,7 @@ export default function Navbar() {
             >
               <div className="relative">
                 <AnimatedShinyText className="font-mono text-4xl font-bold text-white mb-4">
-                  MohdSakib
+                  Software Engineer
                 </AnimatedShinyText>
                 <div
                   className={`h-px bg-gradient-to-r from-transparent via-white/50 to-transparent transform transition-all duration-800 ease-out ${
@@ -218,19 +203,18 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Navigation Links with staggered morphing animations */}
             <nav className="">
-              <ul className="space-y-6">
+              <ul className="">
                 {navLinks.map((link, index) => (
                   <li key={link.href}>
                     <div
                       className={`transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
                         isMobileMenuOpen
-                          ? "translate-x-0 translate-y-0 opacity-100 scale-100"
-                          : "translate-x-[-50px] translate-y-[20px] opacity-0 scale-95"
+                          ? "translate-y-0  opacity-100 scale-100"
+                          : " translate-y-[50px] opacity-0 scale-95"
                       }`}
                       style={{
-                        transitionDelay: `${400 + index * 150}ms`,
+                        transitionDelay: `${index * 120 + 400}ms`,
                       }}
                     >
                       <Link
@@ -238,16 +222,13 @@ export default function Navbar() {
                         onClick={closeMobileMenu}
                         className="group relative block py-6 px-8 text-2xl font-bold text-white transition-all duration-500 ease-out overflow-hidden rounded-2xl"
                       >
-                        {/* Background morphing shape */}
                         <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-left rounded-2xl" />
 
-                        {/* Text content */}
                         <div className="relative flex items-center justify-between">
                           <span className="transform group-hover:translate-x-2 transition-transform duration-500 ease-out">
                             {link.label}
                           </span>
 
-                          {/* Animated arrow */}
                           <div className="transform group-hover:translate-x-2 transition-all duration-500 ease-out opacity-0 group-hover:opacity-100">
                             <svg
                               className="w-6 h-6"
@@ -265,7 +246,6 @@ export default function Navbar() {
                           </div>
                         </div>
 
-                        {/* Bottom border animation */}
                         <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-blue-400 to-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
                       </Link>
                     </div>
@@ -274,7 +254,6 @@ export default function Navbar() {
               </ul>
             </nav>
 
-            {/* CTA Button with morphing animation */}
             <div
               className={`text-center transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
                 isMobileMenuOpen
@@ -285,38 +264,18 @@ export default function Navbar() {
                 transitionDelay: `${400 + navLinks.length * 150 + 200}ms`,
               }}
             >
-              <Link
-                href="#contact"
-                className="group relative inline-block"
-                onClick={closeMobileMenu}
-              >
-                <div className="relative overflow-hidden rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-[2px] transition-all duration-500 ease-out group-hover:scale-105">
-                  <div className="relative rounded-full bg-black px-12 py-4 transition-all duration-500 ease-out group-hover:bg-transparent">
-                    <span className="relative text-xl font-bold text-white transition-all duration-500 ease-out">
-                      Hire Me
-                    </span>
-                  </div>
-                </div>
-
-                {/* Floating particles effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                  <div
-                    className="absolute top-1/2 left-1/2 w-2 h-2 bg-blue-400 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-ping"
-                    style={{ animationDelay: "0ms" }}
-                  />
-                  <div
-                    className="absolute top-1/3 left-1/4 w-1 h-1 bg-purple-400 rounded-full animate-ping"
-                    style={{ animationDelay: "200ms" }}
-                  />
-                  <div
-                    className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-pink-400 rounded-full animate-ping"
-                    style={{ animationDelay: "400ms" }}
-                  />
-                </div>
-              </Link>
+              <div className="hidden md:block">
+                <InteractiveHoverButton>
+                  <Link
+                    href="#contact"
+                    className="px-4 py-2 text-sm rounded-md"
+                  >
+                    Hire Me
+                  </Link>
+                </InteractiveHoverButton>
+              </div>
             </div>
 
-            {/* Footer with reveal animation */}
             <div
               className={`text-center mt-16 transform transition-all duration-1000 ease-out ${
                 isMobileMenuOpen
@@ -334,7 +293,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Close area (tap outside to close) */}
         <div className="absolute inset-0 -z-10" onClick={closeMobileMenu} />
       </div>
     </>

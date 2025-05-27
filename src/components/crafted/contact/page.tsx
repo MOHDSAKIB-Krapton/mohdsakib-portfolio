@@ -6,6 +6,7 @@ import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { InteractiveGridPattern } from "@/components/magicui/interactive-grid-pattern";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { Terminal } from "@/components/magicui/terminal";
+import Container from "@/components/common/container/page";
 
 export default function ContactFSMSection() {
   // FSM states for our contact form
@@ -175,179 +176,179 @@ export default function ContactFSMSection() {
   };
 
   return (
-    <section className="w-full py-16 bg-gray-950 text-white relative">
-      {/* <SmoothCursor /> */}
-
-      <div className="max-w-6xl mx-auto px-4" id="contact-fsm-section">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold mb-2">
-            <AnimatedShinyText>Get In Touch</AnimatedShinyText>
-          </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
-            This contact form demonstrates a Finite State Machine - a
-            fundamental concept in computer science for managing complex state
-            transitions and process flow.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-gray-900 p-6 rounded-lg relative overflow-hidden">
-            <InteractiveGridPattern
-              className="absolute inset-0 opacity-10"
-              width={24}
-              height={24}
-              squaresClassName="bg-[rgb(59, 130, 246)]"
-            />
-
-            <h3 className="text-xl font-semibold mb-4 relative z-10">
-              Contact Form
-            </h3>
-            <p className="text-gray-400 mb-6 relative z-10">
-              Current State:{" "}
-              <span className="text-blue-400 font-medium">
-                {formState.toUpperCase()}
-              </span>
+    <Container>
+      <section className="w-full text-white relative" id="contact">
+        <div id="contact-fsm-section">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold mb-2">
+              <AnimatedShinyText>Get In Touch</AnimatedShinyText>
+            </h2>
+            <p className="text-gray-400 max-w-xl mx-auto">
+              This contact form demonstrates a Finite State Machine - a
+              fundamental concept in computer science for managing complex state
+              transitions and process flow.
             </p>
-
-            <div className="space-y-6 relative z-10">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  disabled={
-                    formState !== STATES.IDLE && formState !== STATES.ERROR
-                  }
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={
-                    formState !== STATES.IDLE && formState !== STATES.ERROR
-                  }
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">
-                  Message
-                </label>
-                <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  disabled={
-                    formState !== STATES.IDLE && formState !== STATES.ERROR
-                  }
-                  rows={4}
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your message"
-                />
-              </div>
-
-              {(formState === STATES.IDLE || formState === STATES.ERROR) && (
-                <InteractiveHoverButton onClick={handleSubmit}>
-                  Send Message
-                </InteractiveHoverButton>
-              )}
-
-              {(formState === STATES.VALIDATING ||
-                formState === STATES.PROCESSING) && (
-                <button
-                  disabled
-                  className="w-full py-3 px-6 text-white bg-blue-600 opacity-75 rounded-md cursor-not-allowed"
-                >
-                  Processing...
-                </button>
-              )}
-
-              {formState === STATES.SUCCESS && (
-                <InteractiveHoverButton onClick={resetForm}>
-                  Send Another Message
-                </InteractiveHoverButton>
-              )}
-            </div>
-
-            <div className="mt-8 text-sm text-gray-400 relative z-10">
-              <p className="mb-2">{stateExplanation}</p>
-              <p className="text-xs">
-                State History:{" "}
-                {stateHistory.map((s) => s.toUpperCase()).join(" → ")}
-              </p>
-            </div>
           </div>
 
-          {/* FSM Visualization */}
-          <div className="bg-gray-900 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4">
-              Finite State Machine Visualization
-            </h3>
-            <p className="text-gray-400 mb-4">
-              Watch the FSM process your form submission through different
-              states
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="bg-gray-900 p-6 rounded-lg relative overflow-hidden">
+              <InteractiveGridPattern
+                className="absolute inset-0 opacity-10"
+                width={24}
+                height={24}
+                squaresClassName="bg-[rgb(59, 130, 246)]"
+              />
 
-            <div className="h-64 mb-6">
-              <Terminal>
-                {getTerminalContent().map((line, index) => (
-                  <p key={index}>{line}</p>
-                ))}
-              </Terminal>
-            </div>
-
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-3">
-                What is a Finite State Machine?
-              </h4>
-              <p className="text-gray-400 text-sm mb-4">
-                A Finite State Machine (FSM) is a mathematical model used in
-                computer science and many other fields to design systems that
-                can be in exactly one of a finite number of states at any given
-                time. FSMs are used in everything from compilers and regular
-                expressions to UI workflows and game logic.
+              <h3 className="text-xl font-semibold mb-4 relative z-10">
+                Contact Form
+              </h3>
+              <p className="text-gray-400 mb-6 relative z-10">
+                Current State:{" "}
+                <span className="text-blue-400 font-medium">
+                  {formState.toUpperCase()}
+                </span>
               </p>
 
-              <div className="bg-gray-800 p-4 rounded-lg">
-                <h5 className="text-sm font-medium mb-2">
-                  Key FSM Concepts Demonstrated:
-                </h5>
-                <ul className="text-xs text-gray-400 space-y-1">
-                  <li>
-                    • <span className="text-blue-400">States:</span> Idle,
-                    Validating, Processing, Success, Error
-                  </li>
-                  <li>
-                    • <span className="text-blue-400">Transitions:</span> Rules
-                    for moving between states
-                  </li>
-                  <li>
-                    • <span className="text-blue-400">Events:</span> User
-                    actions that trigger transitions
-                  </li>
-                  <li>
-                    • <span className="text-blue-400">Actions:</span> Operations
-                    performed during transitions
-                  </li>
-                </ul>
+              <div className="space-y-6 relative z-10">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    disabled={
+                      formState !== STATES.IDLE && formState !== STATES.ERROR
+                    }
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={
+                      formState !== STATES.IDLE && formState !== STATES.ERROR
+                    }
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    disabled={
+                      formState !== STATES.IDLE && formState !== STATES.ERROR
+                    }
+                    rows={4}
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your message"
+                  />
+                </div>
+
+                {(formState === STATES.IDLE || formState === STATES.ERROR) && (
+                  <InteractiveHoverButton onClick={handleSubmit}>
+                    Send Message
+                  </InteractiveHoverButton>
+                )}
+
+                {(formState === STATES.VALIDATING ||
+                  formState === STATES.PROCESSING) && (
+                  <button
+                    disabled
+                    className="w-full py-3 px-6 text-white bg-blue-600 opacity-75 rounded-md cursor-not-allowed"
+                  >
+                    Processing...
+                  </button>
+                )}
+
+                {formState === STATES.SUCCESS && (
+                  <InteractiveHoverButton onClick={resetForm}>
+                    Send Another Message
+                  </InteractiveHoverButton>
+                )}
+              </div>
+
+              <div className="mt-8 text-sm text-gray-400 relative z-10">
+                <p className="mb-2">{stateExplanation}</p>
+                <p className="text-xs">
+                  State History:{" "}
+                  {stateHistory.map((s) => s.toUpperCase()).join(" → ")}
+                </p>
+              </div>
+            </div>
+
+            {/* FSM Visualization */}
+            <div className="bg-gray-900 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-4">
+                Finite State Machine Visualization
+              </h3>
+              <p className="text-gray-400 mb-4">
+                Watch the FSM process your form submission through different
+                states
+              </p>
+
+              <div className="h-64 mb-6">
+                <Terminal>
+                  {getTerminalContent().map((line, index) => (
+                    <p key={index}>{line}</p>
+                  ))}
+                </Terminal>
+              </div>
+
+              <div className="mt-8">
+                <h4 className="text-lg font-medium mb-3">
+                  What is a Finite State Machine?
+                </h4>
+                <p className="text-gray-400 text-sm mb-4">
+                  A Finite State Machine (FSM) is a mathematical model used in
+                  computer science and many other fields to design systems that
+                  can be in exactly one of a finite number of states at any
+                  given time. FSMs are used in everything from compilers and
+                  regular expressions to UI workflows and game logic.
+                </p>
+
+                <div className="bg-gray-800 p-4 rounded-lg">
+                  <h5 className="text-sm font-medium mb-2">
+                    Key FSM Concepts Demonstrated:
+                  </h5>
+                  <ul className="text-xs text-gray-400 space-y-1">
+                    <li>
+                      • <span className="text-blue-400">States:</span> Idle,
+                      Validating, Processing, Success, Error
+                    </li>
+                    <li>
+                      • <span className="text-blue-400">Transitions:</span>{" "}
+                      Rules for moving between states
+                    </li>
+                    <li>
+                      • <span className="text-blue-400">Events:</span> User
+                      actions that trigger transitions
+                    </li>
+                    <li>
+                      • <span className="text-blue-400">Actions:</span>{" "}
+                      Operations performed during transitions
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Container>
   );
 }

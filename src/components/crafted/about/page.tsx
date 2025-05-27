@@ -29,7 +29,7 @@ export default function AboutSection() {
         <div className="absolute  top-0 left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0  w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-2 text-white">About Me</h2>
             <div className="w-24 h-[2px] mx-auto bg-blue-500 rounded"></div>
