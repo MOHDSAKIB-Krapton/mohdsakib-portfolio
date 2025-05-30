@@ -64,7 +64,7 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-4 right-4 z-[80] transition-all duration-500 ease-out m-2 rounded-full max-w-7xl mx-auto ${
           isScrolled
-            ? "bg-black/20 backdrop-blur-md border-b border-gray-800"
+            ? "bg-black/20 backdrop-blur-md"
             : "bg-transparent border-transparent"
         }`}
       >
@@ -140,156 +140,127 @@ export default function Navbar() {
       </header>
 
       <div
-        className={`fixed inset-0 z-50 md:hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        className={`fixed inset-0 z-50 md:hidden p-8 backdrop-blur-md flex items-center justify-center transition-all duration-1000 ease-in ${
           isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+            ? "opacity-100 pointer-events-auto translate-y-0"
+            : "opacity-0 pointer-events-none translate-y-full"
+        }
+        `}
       >
-        <div
-          className={`absolute inset-0 transition-all duration-1000 ease-out ${
-            isMobileMenuOpen
-              ? "backdrop-blur-md bg-black/60"
-              : "backdrop-blur-none bg-transparent"
-          }`}
-          style={{
-            transitionDelay: isMobileMenuOpen ? "300ms" : "0ms",
-          }}
-        />
-
-        <div
-          className={`absolute inset-0 flex items-center justify-center p-8 transform transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-            isMobileMenuOpen ? "scale-100 rotate-0" : "scale-95 rotate-3"
-          }`}
-          style={{
-            transitionDelay: isMobileMenuOpen ? "200ms" : "0ms",
-          }}
-        >
+        <div className="w-full max-w-md">
           <div
-            onClick={toggleMobileMenu}
-            className="absolute top-4 right-4 z-50"
+            className={`text-center transform transition-all duration-1000 ease-out ${
+              isMobileMenuOpen
+                ? "translate-y-0 opacity-100 scale-100"
+                : "translate-y-8 opacity-0 scale-95"
+            }`}
+            style={{ transitionDelay: "200ms" }}
           >
-            <Cross width={24} height={24} />
+            <div className="relative">
+              <AnimatedShinyText className="font-mono text-4xl font-bold text-white mb-4">
+                Software Engineer
+              </AnimatedShinyText>
+              <div
+                className={`h-px bg-gradient-to-r from-transparent via-white/50 to-transparent transform transition-all duration-800 ease-out ${
+                  isMobileMenuOpen ? "scale-x-100" : "scale-x-0"
+                }`}
+                style={{ transitionDelay: "600ms" }}
+              />
+            </div>
+            <div className="">
+              <TypingAnimation
+                className="text-lg text-gray-300 font-light"
+                delay={2000}
+                startOnView={isMobileMenuOpen}
+              >
+                {algoConcept[currentIndex]}
+              </TypingAnimation>
+            </div>
           </div>
 
-          <div className="w-full max-w-md">
-            <div
-              className={`text-center transform transition-all duration-1000 ease-out ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100 scale-100"
-                  : "translate-y-8 opacity-0 scale-95"
-              }`}
-              style={{ transitionDelay: "200ms" }}
-            >
-              <div className="relative">
-                <AnimatedShinyText className="font-mono text-4xl font-bold text-white mb-4">
-                  Software Engineer
-                </AnimatedShinyText>
-                <div
-                  className={`h-px bg-gradient-to-r from-transparent via-white/50 to-transparent transform transition-all duration-800 ease-out ${
-                    isMobileMenuOpen ? "scale-x-100" : "scale-x-0"
-                  }`}
-                  style={{ transitionDelay: "600ms" }}
-                />
-              </div>
-              <div className="">
-                <TypingAnimation
-                  className="text-lg text-gray-300 font-light"
-                  delay={2000}
-                  startOnView={isMobileMenuOpen}
-                >
-                  {algoConcept[currentIndex]}
-                </TypingAnimation>
-              </div>
-            </div>
-
-            <nav className="">
-              <ul className="">
-                {navLinks.map((link, index) => (
-                  <li key={link.href}>
-                    <div
-                      className={`transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
-                        isMobileMenuOpen
-                          ? "translate-y-0  opacity-100 scale-100"
-                          : " translate-y-[50px] opacity-0 scale-95"
-                      }`}
-                      style={{
-                        transitionDelay: `${index * 120 + 400}ms`,
-                      }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={closeMobileMenu}
-                        className="group relative block py-6 px-8 text-2xl font-bold text-white transition-all duration-500 ease-out overflow-hidden rounded-2xl"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-left rounded-2xl" />
-
-                        <div className="relative flex items-center justify-between">
-                          <span className="transform group-hover:translate-x-2 transition-transform duration-500 ease-out">
-                            {link.label}
-                          </span>
-
-                          <div className="transform group-hover:translate-x-2 transition-all duration-500 ease-out opacity-0 group-hover:opacity-100">
-                            <svg
-                              className="w-6 h-6"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-
-                        <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-blue-400 to-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
-                      </Link>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div
-              className={`text-center transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100 scale-100"
-                  : "translate-y-8 opacity-0 scale-90"
-              }`}
-              style={{
-                transitionDelay: `${400 + navLinks.length * 150 + 200}ms`,
-              }}
-            >
-              <div className="hidden md:block">
-                <InteractiveHoverButton>
-                  <Link
-                    href="#contact"
-                    className="px-4 py-2 text-sm rounded-md"
+          <nav className="">
+            <ul className="">
+              {navLinks.map((link, index) => (
+                <li key={link.href}>
+                  <div
+                    className={`transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                      isMobileMenuOpen
+                        ? "translate-y-0  opacity-100 scale-100"
+                        : " translate-y-[50px] opacity-0 scale-95"
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 120 + 400}ms`,
+                    }}
                   >
-                    Hire Me
-                  </Link>
-                </InteractiveHoverButton>
-              </div>
-            </div>
+                    <Link
+                      href={link.href}
+                      onClick={closeMobileMenu}
+                      className="group relative block py-6 px-8 text-2xl font-bold text-white transition-all duration-500 ease-out overflow-hidden rounded-2xl"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-left rounded-2xl" />
 
-            <div
-              className={`text-center mt-16 transform transition-all duration-1000 ease-out ${
-                isMobileMenuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-4 opacity-0"
-              }`}
-              style={{
-                transitionDelay: `${400 + navLinks.length * 150 + 400}ms`,
-              }}
-            >
-              <p className="text-gray-400 text-sm font-light">
-                Let's build something extraordinary together
-              </p>
+                      <div className="relative flex items-center justify-between">
+                        <span className="transform group-hover:translate-x-2 transition-transform duration-500 ease-out">
+                          {link.label}
+                        </span>
+
+                        <div className="transform group-hover:translate-x-2 transition-all duration-500 ease-out opacity-0 group-hover:opacity-100">
+                          <svg
+                            className="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-blue-400 to-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div
+            className={`text-center transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+              isMobileMenuOpen
+                ? "translate-y-0 opacity-100 scale-100"
+                : "translate-y-8 opacity-0 scale-90"
+            }`}
+            style={{
+              transitionDelay: `${400 + navLinks.length * 150 + 200}ms`,
+            }}
+          >
+            <div className="hidden md:block">
+              <InteractiveHoverButton>
+                <Link href="#contact" className="px-4 py-2 text-sm rounded-md">
+                  Hire Me
+                </Link>
+              </InteractiveHoverButton>
             </div>
+          </div>
+
+          <div
+            className={`text-center mt-16 transform transition-all duration-1000 ease-out ${
+              isMobileMenuOpen
+                ? "translate-y-0 opacity-100"
+                : "translate-y-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: `${400 + navLinks.length * 150 + 400}ms`,
+            }}
+          >
+            <p className="text-gray-400 text-sm font-light">
+              Let's build something extraordinary together
+            </p>
           </div>
         </div>
 

@@ -59,7 +59,7 @@ export default function SkillsSection() {
 
   return (
     <Container>
-      <section id="skills">
+      <section>
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-2 text-white">
             Technical Skills
@@ -81,6 +81,7 @@ export default function SkillsSection() {
                   prompt="mohdsakib@portfolio:~$"
                   onSubmit={handleTerminalCommand}
                   className="h-96 text-sm rounded-b-none"
+                  autoFocus={false}
                 />
               </div>
 

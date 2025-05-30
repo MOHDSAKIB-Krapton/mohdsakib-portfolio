@@ -1,12 +1,12 @@
 "use client";
 
-import { VideoText } from "@/components/magicui/video-text";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { motion } from "framer-motion";
 import { Code, Cpu, Database, Network } from "lucide-react";
 import Container from "@/components/common/container/page";
 import { GlobeDemo } from "../BFSGlobe";
 import { NodeCounter } from "../node-counter";
+import VideoTextMask from "../video";
 
 const iconAnimations = [
   {
@@ -69,12 +69,7 @@ export default function HeroSection() {
           </div>
 
           <div className="mx-auto z-10 text-center relative flex flex-1 ">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="max-w-4xl mx-auto space-y-5"
-            >
+            <div className="max-w-4xl mx-auto space-y-5">
               <div className="relative h-24">
                 {iconAnimations.map(
                   (
@@ -97,48 +92,19 @@ export default function HeroSection() {
                 )}
               </div>
 
-              <div className="relative h-[150px] md:h-[250px] flex flex-col items-center justify-center gap-y-5">
-                <VideoText
-                  src="./videos/techy.mp4"
-                  className="text-xs"
-                  autoPlay={true}
-                  loop={true}
-                  muted={true}
-                  preload="auto"
-                >
-                  Software
-                </VideoText>
-                <VideoText
-                  src="./videos/techy.mp4"
-                  className="text-xs"
-                  autoPlay={true}
-                  loop={true}
-                  muted={true}
-                  preload="auto"
-                >
-                  Engineer
-                </VideoText>
+              <div className="relative h-[150px] md:h-[250px]">
+                <VideoTextMask videoUrl="./videos/techy.mp4" />
               </div>
 
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto backdrop-blur-sm bg-black/20 p-4 rounded-xl border border-gray-800/50"
-              >
+              <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto backdrop-blur-sm bg-black/20 p-4 rounded-xl border border-gray-800/50">
                 Witness a real-time graph traversal algorithm in action. The
                 glowing green nodes represent the current path of a
                 breadth-first search (BFS) across a dynamically generated
                 network — just one of many CS concepts visualized throughout
                 this portfolio.
-              </motion.p>
+              </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex flex-col sm:flex-row gap-6 justify-center mt-10"
-              >
+              <div className="flex flex-col sm:flex-row gap-6 justify-center mt-10">
                 <InteractiveHoverButton className="group">
                   <span>View Projects</span>
                 </InteractiveHoverButton>
@@ -146,8 +112,8 @@ export default function HeroSection() {
                 <InteractiveHoverButton className="group">
                   <span>Contact Me</span>
                 </InteractiveHoverButton>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
 
           <div className="flex-1 min-h-96 flex">

@@ -51,13 +51,13 @@ export const Terminal = ({
   }, [autoFocus]);
 
   // Blinking cursor effect
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 530);
+  // useEffect(() => {
+  //   const cursorInterval = setInterval(() => {
+  //     setShowCursor((prev) => !prev);
+  //   }, 530);
 
-    return () => clearInterval(cursorInterval);
-  }, []);
+  //   return () => clearInterval(cursorInterval);
+  // }, []);
 
   // Handle click anywhere in terminal to focus input
   const handleTerminalClick = () => {
