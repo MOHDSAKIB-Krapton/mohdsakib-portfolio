@@ -85,10 +85,10 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(30, 29, 29);
-  scroll-behavior: smooth;
 }
 
 * {
+  scroll-behavior: smooth;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;

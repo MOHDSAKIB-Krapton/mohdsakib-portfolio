@@ -6,6 +6,7 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 import { useState } from "react";
 import { FileTree } from "./file-tree/page";
 import { InteractiveGrid } from "../interacted-grid/page";
+import { RoundedTabSwitcher } from "@/components/common/tabSwitcher/page";
 
 export default function CSConceptsSection() {
   const [activeTab, setActiveTab] = useState("architecture");
@@ -101,34 +102,24 @@ export default function CSConceptsSection() {
   };
 
   return (
-    <div className="relative w-full min-h-screen " id="cs-concepts">
+    <section className="relative w-full min-h-screen " id="cs-concepts">
       <InteractiveGrid className="opacity-40" />
       <Container>
-        <div className="relative z-10 w-full">
+        <div className="relative z-10 w-full space-y-12">
           <h2 className="text-4xl font-bold text-white mb-4">CS Concepts</h2>
           <p className="text-gray-400 text-lg mb-8">
             Interactive demonstrations of key computer science principles
           </p>
 
-          <div className="flex gap-2 mb-8">
-            {["architecture", "optimization"].map((tab) => (
-              <InteractiveHoverButton
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`${
-                  activeTab === tab
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-800 text-gray-300"
-                }`}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </InteractiveHoverButton>
-            ))}
-          </div>
+          <RoundedTabSwitcher
+            tabs={["architecture", "optimization"]}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
 
           {tabContent[activeTab]}
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

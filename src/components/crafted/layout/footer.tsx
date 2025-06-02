@@ -6,143 +6,124 @@ import { MorphingText } from "@/components/magicui/morphing-text";
 import Container from "@/components/common/container/page";
 
 export default function Footer() {
-  const [terminalVisible, setTerminalVisible] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  // Hash function demonstration (simplified SHA-256 concept)
-  // This is a very simplified version just to demonstrate the concept
+  // Simplified hash function to simulate CS cryptographic concepts
   const hashString = (str: string) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
       const char = str.charCodeAt(i);
       hash = (hash << 5) - hash + char;
-      hash = hash & hash; // Convert to 32bit integer
+      hash = hash & hash;
     }
     return hash.toString(16).padStart(8, "0");
   };
 
   const socialLinks = [
-    { name: "GitHub", url: "https://github.com/yourusername" },
-    { name: "LinkedIn", url: "https://linkedin.com/in/yourusername" },
+    { name: "GitHub", url: "https://github.com/mohdsakib-KRAPTON" },
+    { name: "LinkedIn", url: "https://linkedin.com/in/mohdsakib001" },
     { name: "Twitter", url: "https://twitter.com/yourusername" },
-    { name: "Email", url: "mailto:your.email@example.com" },
+    { name: "Email", url: "mailto:mohdsakib.work@gmail.com" },
+  ];
+
+  const bigOExamples = [
+    { complexity: "O(1)", meaning: "Constant Time - direct lookup" },
+    { complexity: "O(log n)", meaning: "Logarithmic Time - binary search" },
+    { complexity: "O(n)", meaning: "Linear Time - array traversal" },
+    {
+      complexity: "O(n log n)",
+      meaning: "Efficient Sort - mergesort, heapsort",
+    },
+    { complexity: "O(n²)", meaning: "Nested Loops - bubble sort" },
   ];
 
   return (
-    <footer className="bg-black text-gray-400 border-t border-gray-800">
-      {/* <div className="container mx-auto px-4 py-12"> */}
+    <footer className=" text-gray-400 border-t border-gray-800">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Left column */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">
-              <MorphingText
-                texts={["Developer", "Problem Solver", "CS Enthusiast"]}
-                className="text-lg font-semibold"
-              />
-            </h3>
-            <p className="mb-4">
-              Building elegant solutions with code and computer science
-              principles.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-4">
-              {socialLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.url}
-                  className="text-gray-400 hover:text-white transition-colors"
-                  data-hash={hashString(link.name)}
-                  onMouseEnter={(e) => {
-                    // Show hash value on hover (simulating cryptographic concepts)
-                    const target = e.currentTarget;
-                    const originalText = target.textContent;
-                    target.setAttribute(
-                      "data-original-text",
-                      originalText || ""
-                    );
-                    target.textContent = target.getAttribute("data-hash");
-                  }}
-                  onMouseLeave={(e) => {
-                    const target = e.currentTarget;
-                    target.textContent =
-                      target.getAttribute("data-original-text");
-                  }}
-                >
-                  {link.name}
-                </Link>
-              ))}
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Column 1: Developer Info */}
+            <div>
+              <p className="mb-4">
+                Writing code that bridges theory and practice, with a love for
+                clean architecture and optimized performance.
+              </p>
+              <div className="flex flex-wrap gap-4 mt-4">
+                {socialLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.url}
+                    className="text-gray-400 hover:text-white transition-colors relative group"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={link.name}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 2: Sitemap */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Sitemap</h3>
+              <ul className="space-y-2">
+                {["about", "projects", "skills", "education", "contact"].map(
+                  (section) => (
+                    <li key={section}>
+                      <Link
+                        href={`#${section}`}
+                        className="hover:text-white transition-colors capitalize"
+                      >
+                        {section}
+                      </Link>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+
+            {/* Column 3: CS Concept - Big-O */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">
+                Big-O Complexity Guide
+              </h3>
+              <p className="text-sm mb-4">
+                Understanding algorithm complexity is key to writing performant
+                code:
+              </p>
+              <ul className="space-y-2 text-xs font-mono">
+                {bigOExamples.map(({ complexity, meaning }) => (
+                  <li
+                    key={complexity}
+                    className="hover:text-white group transition-all"
+                  >
+                    <span className="text-green-400">{complexity}</span>{" "}
+                    <span className="text-gray-500 group-hover:text-gray-300">
+                      – {meaning}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Middle column */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Sitemap</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="#about"
-                  className="hover:text-white transition-colors"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#projects"
-                  className="hover:text-white transition-colors"
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#skills"
-                  className="hover:text-white transition-colors"
-                >
-                  Skills
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#education"
-                  className="hover:text-white transition-colors"
-                >
-                  CS Concepts
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#contact"
-                  className="hover:text-white transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-8 pt-8 border-t border-gray-800 text-sm text-center">
-          <p>© {currentYear} - Built with Next.js and Magic UI</p>
-          <p className="mt-1 text-xs">
-            <span className="font-mono">
-              {/* Recursive function visualization - shows how a recursive countdown works */}
+          <div className="mt-8 pt-8 border-t border-gray-800 text-sm text-center">
+            <p>
+              © {currentYear} - Built with Next.js, Tailwind CSS, and ❤️ for CS
+            </p>
+            <p className="mt-1 text-xs font-mono text-gray-500">
+              Countdown to base case:&nbsp;
               {Array(5)
                 .fill(0)
                 .map((_, i) => (
-                  <span
-                    key={i}
-                    className="inline-block px-1 opacity-80"
-                    style={{ animationDelay: `${i * 0.2}s` }}
-                  >
+                  <span key={i} className="inline-block animate-pulse px-0.5">
                     {5 - i}
                   </span>
                 ))}
-              <span className="text-green-500">
-                recursion(0) // Base case reached!
-              </span>
-            </span>
-          </p>
+              <span className="text-green-500"> → base case reached!</span>
+            </p>
+          </div>
         </div>
       </Container>
     </footer>

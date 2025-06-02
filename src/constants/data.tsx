@@ -10,9 +10,9 @@ import { Project, Skill } from "./data.types";
 
 export const navLinks = [
   { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
+  { href: "#github", label: "Projects" },
   { href: "#skills", label: "Skills" },
-  { href: "#education", label: "CS Concepts" },
+  { href: "#cs-concepts", label: "CS Concepts" },
   { href: "#contact", label: "Contact" },
 ];
 
