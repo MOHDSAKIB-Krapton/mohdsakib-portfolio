@@ -310,7 +310,7 @@ export default function BlogsSection() {
 
   return (
     <Container>
-      <div className="relative w-full" id="blogs">
+      <div className="relative w-full py-16" id="blogs">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div>

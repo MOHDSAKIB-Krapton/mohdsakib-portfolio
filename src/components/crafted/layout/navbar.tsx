@@ -5,11 +5,27 @@ import Link from "next/link";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
-import { algoConcept, navLinks } from "@/constants/data";
+import { algoConcept, navLinks, socialLinks } from "@/constants/data";
 import { NavLink } from "@/lib/helper/navlink";
-import { Cross } from "lucide-react";
+import {
+  Cross,
+  Github,
+  Globe,
+  IndianRupee,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Music2,
+  Twitter,
+  User,
+  Youtube,
+} from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -70,34 +86,42 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="h-16 flex items-center justify-between">
-            <div className="flex items-center space-x-2">
+            <a href="/" title="Home" className="flex items-center space-x-2">
               <AnimatedShinyText className="font-mono text-lg font-bold text-white">
                 MohdSakib
               </AnimatedShinyText>
               <div className="hidden md:block pl-2 ml-2 border-l border-gray-700 w-[150px] truncate">
                 <TypingAnimation
-                  className="text-sm text-gray-400"
-                  delay={2000}
+                  className="text-sm text-gray-200"
                   startOnView={true}
                 >
                   {algoConcept[currentIndex]}
                 </TypingAnimation>
               </div>
-            </div>
+            </a>
 
             <nav className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
-                <NavLink key={link.href} href={link.href}>
+                <a
+                  key={link.href}
+                  href={link.href}
+                  title={link.label}
+                  className="relative text-sm text-white duration-300"
+                >
                   {link.label}
-                </NavLink>
+                </a>
               ))}
             </nav>
 
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <InteractiveHoverButton>
-                <Link href="#contact" className="px-4 py-2 text-sm rounded-md">
+                <a
+                  href="/contact"
+                  title="Contact"
+                  className="px-4 py-2 text-sm rounded-md"
+                >
                   Hire Me
-                </Link>
+                </a>
               </InteractiveHoverButton>
             </div>
 
@@ -139,96 +163,99 @@ export default function Navbar() {
         </div>
       </header>
 
-      <div
-        className={`fixed inset-0 z-50 md:hidden p-8 backdrop-blur-md flex items-center justify-center transition-all duration-1000 ease-in ${
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto translate-y-0"
-            : "opacity-0 pointer-events-none translate-y-full"
-        }
-        `}
-      >
-        <div className="w-full max-w-md">
+      <div className={`fixed inset-0 z-50 md:hidden`}>
+        <div
+          className={`absolute inset-0 transition-opacity duration-700 bg-black ${
+            isMobileMenuOpen
+              ? "opacity-40 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+          onClick={closeMobileMenu}
+        />
+
+        <div
+          className={`absolute bottom-0 left-1/2 -translate-x-1/2 min-h-[70%] w-full max-w-md bg-white rounded-2xl py-8 transition-transform duration-500 ease-in-out flex flex-col justify-evenly space-y-8 ${
+            isMobileMenuOpen ? "translate-y-0" : "translate-y-[150%]"
+          }`}
+          style={{
+            transitionDelay: isMobileMenuOpen ? "200ms" : "0ms",
+          }}
+        >
           <div
-            className={`text-center transform transition-all duration-1000 ease-out ${
-              isMobileMenuOpen
-                ? "translate-y-0 opacity-100 scale-100"
-                : "translate-y-8 opacity-0 scale-95"
-            }`}
-            style={{ transitionDelay: "200ms" }}
+            className={`text-center transform transition-all duration-1000 ease-out space-y-1`}
           >
             <div className="relative">
-              <AnimatedShinyText className="font-mono text-4xl font-bold text-white mb-4">
+              <AnimatedShinyText className="font-mono text-4xl font-bold mb-4">
                 Software Engineer
               </AnimatedShinyText>
-              <div
-                className={`h-px bg-gradient-to-r from-transparent via-white/50 to-transparent transform transition-all duration-800 ease-out ${
-                  isMobileMenuOpen ? "scale-x-100" : "scale-x-0"
-                }`}
-                style={{ transitionDelay: "600ms" }}
-              />
-            </div>
-            <div className="">
-              <TypingAnimation
-                className="text-lg text-gray-300 font-light"
-                delay={2000}
-                startOnView={isMobileMenuOpen}
-              >
-                {algoConcept[currentIndex]}
-              </TypingAnimation>
             </div>
           </div>
 
-          <nav className="">
-            <ul className="">
-              {navLinks.map((link, index) => (
-                <li key={link.href}>
-                  <div
-                    className={`transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
-                      isMobileMenuOpen
-                        ? "translate-y-0  opacity-100 scale-100"
-                        : " translate-y-[50px] opacity-0 scale-95"
-                    }`}
-                    style={{
-                      transitionDelay: `${index * 120 + 400}ms`,
-                    }}
-                  >
-                    <Link
+          <nav className="mt-10">
+            <ul className="px-6 space-y-2">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <li key={link.href}>
+                    <a
                       href={link.href}
                       onClick={closeMobileMenu}
-                      className="group relative block py-6 px-8 text-2xl font-bold text-white transition-all duration-500 ease-out overflow-hidden rounded-2xl"
+                      className={`flex items-center justify-between p-3 text-lg font-semibold text-black rounded-md hover:bg-red-50 transition-colors duration-300 ${
+                        isActive
+                          ? "backdrop-blur-lg bg-black/80 text-white"
+                          : ""
+                      }`}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-left rounded-2xl" />
-
-                      <div className="relative flex items-center justify-between">
-                        <span className="transform group-hover:translate-x-2 transition-transform duration-500 ease-out">
-                          {link.label}
-                        </span>
-
-                        <div className="transform group-hover:translate-x-2 transition-all duration-500 ease-out opacity-0 group-hover:opacity-100">
-                          <svg
-                            className="w-6 h-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-blue-400 to-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
-                    </Link>
-                  </div>
-                </li>
-              ))}
+                      <span>{link.label}</span>
+                      <span className="text-gray-400">&gt;</span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
+          <div className="mt-10 px-6 py-4 border-t border-gray-200 flex flex-col gap-4">
+            <div className="flex justify-between items-center text-sm text-gray-600">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
+                  <Globe className="w-4 h-4" />
+                  <span>Freelance</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-4 h-4" />
+                  <span>Remote / India</span>
+                </div>
+              </div>
 
+              <a
+                href="mailto:youremail@example.com"
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-black text-sm"
+              >
+                <Mail className="w-4 h-4" />
+                Contact
+              </a>
+            </div>
+
+            <div className="flex justify-center gap-5 text-gray-600 text-xl mt-2">
+              {socialLinks.map((link, index) => {
+                return (
+                  <a
+                    key={index}
+                    href={link.href}
+                    target="_blank"
+                    title={link.name}
+                    aria-label={link.name}
+                    className="flex items-center justify-center"
+                  >
+                    {link.icon}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom CTA: Hire Me */}
           <div
             className={`text-center transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
               isMobileMenuOpen
@@ -241,30 +268,34 @@ export default function Navbar() {
           >
             <div className="hidden md:block">
               <InteractiveHoverButton>
-                <Link href="#contact" className="px-4 py-2 text-sm rounded-md">
+                <a
+                  href="/contact"
+                  title="Contact"
+                  className="px-4 py-2 text-sm rounded-md"
+                >
                   Hire Me
-                </Link>
+                </a>
               </InteractiveHoverButton>
             </div>
           </div>
 
           <div
-            className={`text-center mt-16 transform transition-all duration-1000 ease-out ${
-              isMobileMenuOpen
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0"
-            }`}
-            style={{
-              transitionDelay: `${400 + navLinks.length * 150 + 400}ms`,
-            }}
+            className={`text-center transform transition-all duration-1000 ease-out`}
           >
             <p className="text-gray-400 text-sm font-light">
               Let's build something extraordinary together
             </p>
+
+            <div className="">
+              <TypingAnimation
+                className="text-sm text-gray-600 font-light underline"
+                startOnView={isMobileMenuOpen}
+              >
+                {algoConcept[currentIndex]}
+              </TypingAnimation>
+            </div>
           </div>
         </div>
-
-        <div className="absolute inset-0 -z-10" onClick={closeMobileMenu} />
       </div>
     </>
   );

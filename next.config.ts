@@ -4,8 +4,14 @@ const nextConfig: NextConfig = {
   /* config options here */
 
   allowedDevOrigins: ["http://172.25.48.1"], // or your device/emulator IP
+
   images: {
-    domains: ["images.pexels.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
+    ],
   },
 };
 

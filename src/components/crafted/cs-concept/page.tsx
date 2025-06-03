@@ -102,7 +102,7 @@ export default function CSConceptsSection() {
   };
 
   return (
-    <section className="relative w-full min-h-screen " id="cs-concepts">
+    <section className="relative w-full min-h-screen py-16" id="cs-concepts">
       <InteractiveGrid className="opacity-40" />
       <Container>
         <div className="relative z-10 w-full space-y-12">

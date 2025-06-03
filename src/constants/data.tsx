@@ -5,15 +5,15 @@ import {
   Layers,
   Image,
   Globe,
+  Github,
 } from "lucide-react";
 import { Project, Skill } from "./data.types";
 
 export const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#github", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#cs-concepts", label: "CS Concepts" },
-  { href: "#contact", label: "Contact" },
+  { href: "/skills", label: "Skills" },
+  { href: "/cs-concept", label: "CS Concepts" },
+  { href: "/github", label: "Github Overview" },
+  { href: "/blogs", label: "Blogs" },
 ];
 
 export const algoConcept = [
@@ -246,5 +246,33 @@ export const projects: Project[] = [
       { type: "animated", content: "✔ Data extracted and stored", delay: 2200 },
       { type: "typing", content: "Scraping complete.", delay: 2600 },
     ],
+  },
+];
+
+export const socialLinks: {
+  name: string;
+  href: string;
+  icon: React.ReactNode;
+}[] = [
+  {
+    name: "GitHub",
+    href: "https://github.com/mohdsakib-KRAPTON",
+    icon: <img src="/svg/github.svg" alt="GitHub" className="w-5 h-5" />,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/mohdsakib001",
+    icon: <img src="/svg/linkedin.svg" alt="LinkedIn" className="w-6 h-6" />,
+  },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/mohdsakib001",
+    icon: (
+      <img
+        src="/svg/twitter.svg"
+        alt="Twitter"
+        className="w-5 h-5 rounded-full "
+      />
+    ),
   },
 ];

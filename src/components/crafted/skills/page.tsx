@@ -59,7 +59,7 @@ export default function SkillsSection() {
 
   return (
     <Container>
-      <section id="skills">
+      <section id="skills" className="py-16">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-2 text-white">
             Technical Skills
