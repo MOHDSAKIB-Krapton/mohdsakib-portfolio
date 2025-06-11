@@ -141,7 +141,7 @@ export default function ContactFSMSection() {
 
   return (
     <Container>
-      <section className="w-full text-white relative" id="contact">
+      <section className="w-full text-white relative py-12" id="contact">
         <div className="mb-12 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             {CONSTANTS.heading}

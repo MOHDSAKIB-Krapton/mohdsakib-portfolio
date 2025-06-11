@@ -50,15 +50,6 @@ export const Terminal = ({
     }
   }, [autoFocus]);
 
-  // Blinking cursor effect
-  // useEffect(() => {
-  //   const cursorInterval = setInterval(() => {
-  //     setShowCursor((prev) => !prev);
-  //   }, 530);
-
-  //   return () => clearInterval(cursorInterval);
-  // }, []);
-
   // Handle click anywhere in terminal to focus input
   const handleTerminalClick = () => {
     if (inputRef.current) {
@@ -229,7 +220,7 @@ export const Terminal = ({
                 onSelect={handleSelectionChange}
                 onBlur={() => setShowCursor(false)}
                 onFocus={() => setShowCursor(true)}
-                className="absolute top-0 left-0 w-full h-full opacity-0 resize-none overflow-hidden outline-none bg-transparent"
+                className="absolute top-0 left-0 w-full h-full opacity-[0.01] resize-none overflow-hidden outline-none bg-transparent"
                 spellCheck="false"
                 autoCapitalize="off"
                 autoComplete="off"
@@ -244,7 +235,6 @@ export const Terminal = ({
   );
 };
 
-// Typing Animation component
 interface TypingAnimationProps {
   children: string;
   className?: string;

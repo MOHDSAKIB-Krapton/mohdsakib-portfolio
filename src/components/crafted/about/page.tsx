@@ -63,7 +63,7 @@ export default function AboutSection() {
                   >
                     {hoveredParagraph != index ? (
                       <>
-                        <span className="text-red-500 text-xs block mb-1 animate-pulse">
+                        <span className="text-red-400 text-xs block mb-1 animate-pulse">
                           // SHA-256 Hash (hover to decrypt)
                         </span>
                         <span className="break-all tracking-tight opacity-50">
@@ -119,6 +119,7 @@ export default function AboutSection() {
 
                           <div
                             role="progressbar"
+                            aria-label={`${skill.name} proficiency`}
                             aria-valuemin={0}
                             aria-valuemax={100}
                             aria-valuenow={skill.proficiency}

@@ -98,20 +98,23 @@ export default function HeroSection() {
 
               <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto backdrop-blur-sm bg-black/20 p-4 rounded-xl border border-gray-800/50">
                 Witness a real-time graph traversal algorithm in action. The
-                glowing green nodes represent the current path of a
-                breadth-first search (BFS) across a dynamically generated
-                network — just one of many CS concepts visualized throughout
-                this portfolio.
+                glowing nodes represent the current path of a breadth-first
+                search (BFS) across a dynamically generated network — just one
+                of many CS concepts visualized throughout this portfolio.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center mt-10">
-                <InteractiveHoverButton className="group">
-                  <span>View Projects</span>
-                </InteractiveHoverButton>
+                <a href="/skills" title="Skills">
+                  <InteractiveHoverButton className="group">
+                    <span>Skills</span>
+                  </InteractiveHoverButton>
+                </a>
 
-                <InteractiveHoverButton className="group">
-                  <span>Contact Me</span>
-                </InteractiveHoverButton>
+                <a href="/contact" title="Contact">
+                  <InteractiveHoverButton className="group">
+                    <span>Contact Me</span>
+                  </InteractiveHoverButton>
+                </a>
               </div>
             </div>
           </div>

@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import Container from "@/components/common/container/page";
 import { RoundedTabSwitcher } from "@/components/common/tabSwitcher/page";
+import Image from "next/image";
 
 interface GitHubRepo {
   name: string;
@@ -185,11 +186,12 @@ export default function GitHubShowcase() {
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
               {/* Avatar and Basic Info */}
               <div className="text-center lg:text-left">
-                <div className="relative">
-                  <img
+                <div className="relative w-32 h-32 rounded-full border-4 border-white/30 shadow-xl mx-auto lg:mx-0 overflow-hidden">
+                  <Image
                     src={profile.avatar_url}
                     alt={profile.login}
-                    className="w-32 h-32 rounded-full border-4 border-white/30 shadow-xl mx-auto lg:mx-0"
+                    title={profile.login}
+                    fill
                   />
                 </div>
                 <h2 className="text-3xl font-bold mt-4">
