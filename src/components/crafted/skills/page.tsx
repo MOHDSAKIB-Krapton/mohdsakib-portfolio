@@ -109,50 +109,44 @@ export default function SkillsSection() {
                   }`}
                 >
                   {bstVisualization
-                    ? "Show Icon Cloud"
-                    : "Show Cloud Visualization"}
+                    ? "Show Proficiency Levels"
+                    : "Show Icon Cloud "}
                 </button>
               </div>
 
-              <div className="h-96 flex flex-col flex-1">
-                {bstVisualization ? (
+              {bstVisualization ? (
+                <div className="min-h-96 flex flex-col flex-1">
                   <SkillIconShow slugs={selectedIcons} />
-                ) : (
-                  <IconCloud
-                    icons={
-                      selectedCategory
-                        ? skillsMap[selectedCategory].map((s) => s.icon)
-                        : allSkillIcons
-                    }
-                  />
-                )}
-              </div>
-
-              {selectedCategory && !bstVisualization && (
-                <div className="mt-4 pt-4 border-t border-gray-800">
-                  <h4 className="text-sm text-gray-300 mb-2">
-                    Proficiency Levels:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {skillsMap[selectedCategory]
-                      .sort((a, b) => b.level - a.level)
-                      .map((skill) => (
-                        <div
-                          key={skill.name}
-                          className="flex items-center gap-2 px-2 py-1 bg-gray-800 rounded-md text-xs"
-                        >
-                          <span>{skill.name}</span>
-                          <div className="w-16 bg-gray-700 rounded-full h-1.5">
-                            <div
-                              className="bg-blue-500 h-1.5 rounded-full"
-                              style={{ width: `${skill.level}%` }}
-                            ></div>
-                          </div>
-                          <span className="text-gray-400">{skill.level}%</span>
-                        </div>
-                      ))}
-                  </div>
                 </div>
+              ) : (
+                selectedCategory && (
+                  <div className="mt-4 pt-4 border-t border-gray-800">
+                    <h4 className="text-sm text-gray-300 mb-2">
+                      Proficiency Levels:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {skillsMap[selectedCategory]
+                        .sort((a, b) => b.level - a.level)
+                        .map((skill) => (
+                          <div
+                            key={skill.name}
+                            className="flex items-center gap-2 px-2 py-1 bg-gray-800 rounded-md text-xs"
+                          >
+                            <span>{skill.name}</span>
+                            <div className="w-16 bg-gray-700 rounded-full h-1.5">
+                              <div
+                                className="bg-blue-500 h-1.5 rounded-full"
+                                style={{ width: `${skill.level}%` }}
+                              ></div>
+                            </div>
+                            <span className="text-gray-400">
+                              {skill.level}%
+                            </span>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )
               )}
             </div>
           </div>
