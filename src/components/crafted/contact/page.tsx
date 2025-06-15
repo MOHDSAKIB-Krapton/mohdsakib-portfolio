@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Terminal } from "@/components/magicui/terminal";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import Container from "@/components/common/container/page";
+import EmailServices from "@/services/email/page";
 
 // FSM States
 enum FSMStates {
@@ -92,15 +93,19 @@ export default function ContactFSMSection() {
 
   const handleSubmit = async () => {
     updateState(FSMStates.VALIDATING);
-
     await new Promise((res) => setTimeout(res, 1000));
+
     if (!validateInputs()) return updateState(FSMStates.ERROR);
 
     updateState(FSMStates.PROCESSING);
-    await new Promise((res) => setTimeout(res, 1500));
+    await new Promise((res) => setTimeout(res, 500));
 
-    const success = Math.random() < 0.9;
+    const success = await EmailServices.sendEmails(name, email, message);
     updateState(success ? FSMStates.SUCCESS : FSMStates.ERROR);
+
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   const resetForm = () => {
