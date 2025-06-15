@@ -1,4 +1,4 @@
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 export default class EmailServices {
   static async sendEmails(name: string, email: string, message: string) {
