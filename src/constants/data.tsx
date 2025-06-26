@@ -282,7 +282,7 @@ export const socialLinks: {
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/mohdsakib001",
+    href: "https://x.com/itz_me_sakib",
     icon: (
       <img
         src="/svg/twitter.svg"

@@ -1,26 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { algoConcept, navLinks, socialLinks } from "@/constants/data";
-import { NavLink } from "@/lib/helper/navlink";
-import {
-  Cross,
-  Github,
-  Globe,
-  IndianRupee,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Music2,
-  Twitter,
-  User,
-  Youtube,
-} from "lucide-react";
+import { Globe, Mail, MapPin } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
@@ -116,15 +101,13 @@ export default function Navbar() {
             </nav>
 
             <div className="hidden lg:block">
-              <InteractiveHoverButton>
-                <a
-                  href="/contact"
-                  title="Contact"
-                  className="px-4 py-2 text-sm rounded-md"
-                >
-                  Hire Me
-                </a>
-              </InteractiveHoverButton>
+              <a
+                href="/contact"
+                title="Contact"
+                className="px-4 py-2 text-sm rounded-md"
+              >
+                <InteractiveHoverButton>Hire Me</InteractiveHoverButton>
+              </a>
             </div>
 
             <button
@@ -165,20 +148,22 @@ export default function Navbar() {
         </div>
       </header>
 
-      <div className={`fixed inset-0 z-50 md:hidden`}>
+      <div
+        className={`fixed inset-0 z-50 md:hidden ${
+          isMobileMenuOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
         <div
           className={`absolute inset-0 transition-opacity duration-700 bg-black ${
-            isMobileMenuOpen
-              ? "opacity-40 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
+            isMobileMenuOpen ? "opacity-40 pointer-events-auto" : "opacity-0"
           }`}
           onClick={closeMobileMenu}
         />
 
         <div
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 min-h-[70%] w-full max-w-md bg-white rounded-2xl py-8 transition-transform duration-500 ease-in-out flex flex-col justify-evenly space-y-8 ${
+          className={`absolute bottom-0 left-1/2 -translate-x-1/2 max-h-[90%] overflow-y-scroll w-full max-w-md bg-white rounded-2xl py-8 transition-transform duration-500 ease-in-out flex flex-col justify-evenly space-y-8 ${
             isMobileMenuOpen ? "translate-y-0" : "translate-y-[150%]"
-          }`}
+          } `}
           style={{
             transitionDelay: isMobileMenuOpen ? "200ms" : "0ms",
           }}
@@ -257,7 +242,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Bottom CTA: Hire Me */}
           <div
             className={`text-center transform transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
               isMobileMenuOpen
